@@ -1,0 +1,13 @@
+The ESP32 has two timer groups, each one with two general purpose hardware timers. All the timers are based on 64 bits counters and 16 bit prescalers. 
+The prescaler is used to divide the frequency of the base signal. First we must declare the sec_count as a global variable.
+So, that it can be accessed throughout the code and it must also be declared as volatile. volatile is a keyword that specifies the compiler that the 
+variable may change at any time wihtout any action being taken. Avoids the compiler from making any changes to it. 
+In order to configure the timer, we will need a pointer to a variable of type hw_timer_t. hw_timer_t * timer = NULL;
+We will need to declare a variable of type portMUX_TYPE, which we will use to take care of the synchronization between the main loop and the ISR, 
+when modifying a shared variable. portMUX_TYPE timerMux = portMUX_INITIALIZER_UNLOCKED;
+timer = timerBegin(0, 80, true) 0 represents the timer0, 80 is the prescaler value, and true tells the counter to count up. 
+Before enabling the timer, we need to bind it to a handling function, timerAttachInterrupt(timer, &timerInterrupt, true) true means the interrupt 
+generated is of edge type. 
+timerAlarmWrite(timer, 1000000, true) to specify the counter value in which the timer interrupt generated. The second argument generates an interrupt 
+each second, and thus we pass the value of 1000000 microsecondsThe third argument true, so the counter will reload and thus the interrupt will be 
+periodically generated.
