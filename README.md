@@ -6,3 +6,4 @@ The multiplexer used in this project (16 channel) is a defective one which has o
 Note: If you are using a 4 channel multiplexer it requires only two select pins or two GPIOs and in case of a 16 channel mux it requires 4 select pins. 
 The in-built Timer for ESP32 is used to track the time. Which ticks every second. 
 We also make use of NTP library which needs to be installed from the Arduino library manager. NTP library allows us to get real time from the internet which can be used to set up the time for the clock.  
+The ESP32 module used here is ESP-WROOM-32.
