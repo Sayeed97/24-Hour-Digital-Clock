@@ -1,4 +1,4 @@
-/****
+/****************************************************************************************************************************************************************
 NTPClient library is used to get time from an NTP server which is used to set the time for the Digital Clock. 
 NTPClient timeClient(ntpUDP, "pool.ntp.org", utcOffsetInSeconds), the utcOffsetInSeconds must be set according to the users location. 
 For example New York has UTC-05:00 then utcOffsetInSeconds = 60*60*5 = 18000. timeClient.update() along with 
@@ -7,7 +7,7 @@ But the time that we get from them are in String format so we must first convert
 
 Note: The time String we get from an NTP Server is a constant char and we must convert it to a C string so we use .c_str(), in order to use this function we must 
 include the header cstring.
-****/
+****************************************************************************************************************************************************************/
 
 #include <WiFi.h>
 #include <time.h>
